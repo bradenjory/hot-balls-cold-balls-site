@@ -19,7 +19,7 @@ export default function Home() {
       {/* 1. Hero */}
       <section className="relative overflow-hidden">
         <div className="frame grid items-center gap-y-6 pt-8 pb-0 lg:min-h-[calc(100svh-var(--header-h))] lg:grid-cols-12 lg:py-10">
-          <div className="relative z-10 lg:col-span-7">
+          <div className="relative z-10 lg:col-span-8 xl:col-span-7">
             <p className="eyebrow">Coming to Utah, summer 2027</p>
             <h1 className="mt-4 text-display md:mt-6">
               <span className="block text-hot">Hot balls.</span>
@@ -41,7 +41,7 @@ export default function Home() {
           </div>
 
           {/* The brand ball at hero scale: Blaze, the half-and-half face and Frost stand on it in one row. */}
-          <div className="relative -mx-[var(--margin)] aspect-[2/1] overflow-hidden lg:col-span-5 lg:mx-0 lg:aspect-[1/1.05] lg:overflow-visible">
+          <div className="relative -mx-[var(--margin)] aspect-[2/1] overflow-hidden lg:col-span-4 lg:mx-0 lg:aspect-[1/1.05] xl:col-span-5 lg:overflow-visible">
             <SplitBall
               animate
               hot="bg-hot-deep"
@@ -207,8 +207,8 @@ export default function Home() {
 
       {/* 6. Social */}
       <section className="section" aria-labelledby="social">
-        <div className="frame grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+        <div className="frame grid gap-12 xl:grid-cols-12">
+          <div className="xl:col-span-5">
             <h2 id="social" className="text-h2" data-reveal>
               Tag us. We’ll make you famous-ish.
             </h2>
@@ -271,7 +271,7 @@ function SocialGallery() {
     },
   ];
   return (
-    <ul className="grid grid-cols-6 items-start gap-x-4 gap-y-8 lg:col-span-7 lg:grid-cols-12 lg:gap-x-6">
+    <ul className="grid grid-cols-6 items-start gap-x-4 gap-y-8 lg:grid-cols-12 lg:gap-x-6 xl:col-span-7">
       {tiles.map((t, i) => (
         <li key={t.caption} className={t.place} data-reveal="scale" style={r(i)}>
           <div className={`flex aspect-square items-center justify-center overflow-hidden rounded-full ${t.ground}`}>

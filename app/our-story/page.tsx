@@ -17,7 +17,7 @@ export default function OurStoryPage() {
       {/* Hero */}
       <section className="overflow-hidden">
         <div className="frame grid items-center gap-10 pt-12 pb-16 md:pt-20 md:pb-24 lg:grid-cols-12">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-8 xl:col-span-7">
             <p className="eyebrow">Our story</p>
             <h1 className="mt-4 text-display md:mt-6">
               Cheeky name. <span className="block text-hot">Wholesome face.</span>
@@ -28,7 +28,7 @@ export default function OurStoryPage() {
               That’s the whole idea.
             </p>
           </div>
-          <div className="relative mx-auto aspect-square w-[min(460px,84%)] lg:col-span-5 lg:w-full">
+          <div className="relative mx-auto aspect-square w-[min(460px,84%)] lg:col-span-4 lg:w-full xl:col-span-5">
             <div className="absolute inset-0 rounded-full bg-bg-raised" />
             <Mascot who="symbol" priority sizes="(min-width: 1024px) 26vw, 60vw" className="absolute inset-[16%]" />
             <Mascot who="blaze" priority sizes="(min-width: 1024px) 12vw, 26vw" delay={0.4} className="absolute bottom-[-2%] left-[-4%] w-[34%]" />

@@ -17,7 +17,7 @@
 
   --radius-card: 24px;
 
-  --text-display: clamp(2.6rem, 1rem + 6vw, 6.25rem);
+  --text-display: clamp(2.6rem, 0.5rem + 5.8vw, 6.25rem);
   --text-display--line-height: 0.98;
   --text-h2: clamp(2.1rem, 1.1rem + 3.2vw, 3.9rem);
   --text-h2--line-height: 1.02;
