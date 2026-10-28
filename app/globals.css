@@ -1,0 +1,345 @@
+@import "tailwindcss";
+
+/* Brand tokens. Everything below references these. */
+@theme {
+  --color-bg: #141019;
+  --color-bg-raised: #1c1726;
+  --color-ink: #fff4e2;
+  --color-ink-soft: #d9cfc0;
+  --color-hot: #ff7a1a;
+  --color-cold: #1ed6c6;
+  /* Deep tints of the two team colours: surfaces for hot and cold panels on the dark ground. */
+  --color-hot-deep: #3a1d12;
+  --color-cold-deep: #0c3431;
+
+  --font-display: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+
+  --radius-card: 24px;
+
+  --text-display: clamp(2.6rem, 1rem + 6vw, 6.25rem);
+  --text-display--line-height: 0.98;
+  --text-h2: clamp(2.1rem, 1.1rem + 3.2vw, 3.9rem);
+  --text-h2--line-height: 1.02;
+  --text-h3: clamp(1.6rem, 1.1rem + 1.4vw, 2.35rem);
+  --text-h3--line-height: 1.08;
+  --text-lead: clamp(1.1875rem, 1rem + 0.5vw, 1.4375rem);
+  --text-lead--line-height: 1.5;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --margin: clamp(1rem, 3vw, 2.5rem);
+  --header-h: 72px;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-hot);
+    color: var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* The page frame: one pair of outer margins for every section. */
+  .frame {
+    padding-inline: var(--margin);
+    margin-inline: auto;
+    max-width: 1760px;
+  }
+
+  .section {
+    padding-block: clamp(4.5rem, 3rem + 7vw, 10rem);
+  }
+
+  /* Small uppercase label above a headline. Used only where the brief marks one. */
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  /* Buttons: full pill, flat fill, label sized to its text. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3.25rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    transition:
+      transform 160ms var(--ease-out-expo),
+      background-color 220ms ease,
+      color 220ms ease,
+      box-shadow 220ms ease;
+    cursor: pointer;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn:active {
+    transform: translateY(2px) scale(0.97);
+  }
+  .btn-hot {
+    background: var(--color-hot);
+    color: var(--color-bg);
+  }
+  .btn-hot:hover {
+    background: #ff8c38;
+  }
+  .btn-cold {
+    background: var(--color-cold);
+    color: var(--color-bg);
+  }
+  .btn-cold:hover {
+    background: #4ae0d3;
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 2px var(--color-ink);
+  }
+  .btn-outline:hover {
+    background: var(--color-ink);
+    color: var(--color-bg);
+  }
+  .btn[disabled] {
+    opacity: 0.7;
+    cursor: progress;
+  }
+
+  /* Text links inside running copy. */
+  .link {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    transition: color 200ms ease;
+  }
+  .link:hover {
+    color: var(--color-hot);
+  }
+
+  /* Form fields: pill inputs, labels above. */
+  .field-label {
+    display: block;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .field-help {
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+    margin-top: 0.4rem;
+  }
+  .field-error {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffb38a;
+    margin-top: 0.4rem;
+  }
+  .input {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 999px;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    border: 2px solid #4a4256;
+    font-size: 1.0625rem;
+    transition: border-color 200ms ease;
+  }
+  .input::placeholder {
+    color: #9d93a8;
+  }
+  .input:hover {
+    border-color: #6d6379;
+  }
+  .input:focus-visible {
+    outline: none;
+    border-color: var(--color-ink);
+  }
+  .input[aria-invalid="true"] {
+    border-color: #ffb38a;
+  }
+  textarea.input {
+    border-radius: var(--radius-card);
+    min-height: 9rem;
+    resize: vertical;
+  }
+  select.input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 256 256'%3E%3Cpath fill='%23fff4e2' d='M213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    padding-right: 3rem;
+  }
+
+  /* Honeypot: off-screen for people, still in the DOM for bots. */
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}
+
+/* Scroll entrances. Content only hides once the script has marked the page, so it never stays hidden. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms var(--ease-out-expo),
+    transform 900ms var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+.js [data-reveal="scale"] {
+  transform: scale(0.92);
+}
+.js [data-reveal].is-in,
+.reveal-all [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Marquee strip. */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.marquee[data-paused="true"] .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hero split ball: the two halves meet at the seam on load. */
+@keyframes half-in-left {
+  from {
+    transform: translateX(-18%);
+    opacity: 0;
+  }
+}
+@keyframes half-in-right {
+  from {
+    transform: translateX(18%);
+    opacity: 0;
+  }
+}
+.half-left {
+  animation: half-in-left 1100ms var(--ease-out-expo) both;
+}
+.half-right {
+  animation: half-in-right 1100ms var(--ease-out-expo) both;
+}
+
+/* FAQ accordion on native details/summary. */
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq .faq-icon {
+  transition: transform 300ms var(--ease-out-expo);
+}
+.faq details[open] .faq-icon {
+  transform: rotate(45deg);
+}
+.faq details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 400ms var(--ease-out-expo),
+    content-visibility 400ms allow-discrete;
+}
+.faq details[open]::details-content {
+  block-size: auto;
+}
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .btn:hover,
+  .btn:active {
+    transform: none;
+  }
+}
