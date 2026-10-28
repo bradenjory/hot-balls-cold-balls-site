@@ -3,10 +3,10 @@
 import { useActionState, useRef } from "react";
 import { sendContact } from "@/app/actions";
 import { initialFormState, TOPICS, type TopicKey } from "@/lib/form-state";
-import { Field, FormMessage, Honeypot, SubmitButton, Success, useFocusFirstError } from "./parts";
+import { Field, FormMessage, Honeypot, SubmitButton, Success, submitWithoutReset, useFocusFirstError } from "./parts";
 
 export function ContactForm({ defaultTopic = "general" }: { defaultTopic?: TopicKey }) {
-  const [state, action] = useActionState(sendContact, initialFormState);
+  const [state, action, pending] = useActionState(sendContact, initialFormState);
   const formRef = useRef<HTMLFormElement>(null);
   useFocusFirstError(state, formRef);
 
@@ -15,7 +15,7 @@ export function ContactForm({ defaultTopic = "general" }: { defaultTopic?: Topic
   }
   const topicError = state.fieldErrors?.topic;
   return (
-    <form ref={formRef} action={action} noValidate className="relative flex flex-col gap-6">
+    <form ref={formRef} action={action} onSubmit={submitWithoutReset(action)} noValidate className="relative flex flex-col gap-6">
       <Honeypot />
       <div className="grid gap-6 sm:grid-cols-2">
         <Field id="c-first" name="firstName" label="First name" autoComplete="given-name" required state={state} />
@@ -58,7 +58,7 @@ export function ContactForm({ defaultTopic = "general" }: { defaultTopic?: Topic
       <Field id="c-message" name="message" label="Message" required multiline state={state} />
       <FormMessage state={state} />
       <div>
-        <SubmitButton>Send it</SubmitButton>
+        <SubmitButton pending={pending}>Send it</SubmitButton>
       </div>
     </form>
   );

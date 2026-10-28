@@ -49,9 +49,9 @@ export default function Home() {
               className="absolute top-[34%] left-1/2 w-[112%] -translate-x-1/2 lg:top-1/2 lg:left-[58%] lg:w-[128%] lg:-translate-y-1/2"
             />
             <div className="absolute inset-x-[6%] top-[4%] flex items-end justify-center lg:inset-x-0 lg:top-1/2 lg:left-[8%] lg:-translate-y-1/2">
-              <Mascot who="blaze" priority delay={0} sizes="(min-width: 1024px) 14vw, 28vw" className="relative z-0 -mr-[4%] w-[29%]" />
-              <Mascot who="symbol" priority delay={0.4} sizes="(min-width: 1024px) 18vw, 36vw" className="relative z-10 w-[38%]" />
-              <Mascot who="frost" priority delay={0.8} sizes="(min-width: 1024px) 14vw, 28vw" className="relative z-0 -ml-[4%] w-[29%]" />
+              <Mascot who="blaze" delay={0} sizes="(min-width: 1024px) 14vw, 28vw" className="relative z-0 -mr-[4%] w-[29%]" />
+              <Mascot who="symbol" delay={0.4} sizes="(min-width: 1024px) 18vw, 36vw" className="relative z-10 w-[38%]" />
+              <Mascot who="frost" delay={0.8} sizes="(min-width: 1024px) 14vw, 28vw" className="relative z-0 -ml-[4%] w-[29%]" />
             </div>
           </div>
         </div>
@@ -208,7 +208,7 @@ export default function Home() {
       {/* 6. Social */}
       <section className="section" aria-labelledby="social">
         <div className="frame grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-5">
             <h2 id="social" className="text-h2" data-reveal>
               Tag us. We’ll make you famous-ish.
             </h2>
@@ -271,7 +271,7 @@ function SocialGallery() {
     },
   ];
   return (
-    <ul className="grid grid-cols-6 items-start gap-x-4 gap-y-8 lg:col-span-8 lg:grid-cols-12 lg:gap-x-6">
+    <ul className="grid grid-cols-6 items-start gap-x-4 gap-y-8 lg:col-span-7 lg:grid-cols-12 lg:gap-x-6">
       {tiles.map((t, i) => (
         <li key={t.caption} className={t.place} data-reveal="scale" style={r(i)}>
           <div className={`flex aspect-square items-center justify-center overflow-hidden rounded-full ${t.ground}`}>

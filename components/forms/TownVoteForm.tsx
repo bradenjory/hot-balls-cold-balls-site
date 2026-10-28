@@ -3,10 +3,10 @@
 import { useActionState, useRef } from "react";
 import { castTownVote } from "@/app/actions";
 import { initialFormState } from "@/lib/form-state";
-import { Field, FormMessage, Honeypot, SubmitButton, Success, useFocusFirstError } from "./parts";
+import { Field, FormMessage, Honeypot, SubmitButton, Success, submitWithoutReset, useFocusFirstError } from "./parts";
 
 export function TownVoteForm() {
-  const [state, action] = useActionState(castTownVote, initialFormState);
+  const [state, action, pending] = useActionState(castTownVote, initialFormState);
   const formRef = useRef<HTMLFormElement>(null);
   useFocusFirstError(state, formRef);
 
@@ -14,7 +14,7 @@ export function TownVoteForm() {
     return <Success>Vote counted. We’ll let you know if we’re headed your way.</Success>;
   }
   return (
-    <form ref={formRef} action={action} noValidate className="relative flex flex-col gap-6">
+    <form ref={formRef} action={action} onSubmit={submitWithoutReset(action)} noValidate className="relative flex flex-col gap-6">
       <Honeypot />
       <Field
         id="vote-email"
@@ -37,7 +37,7 @@ export function TownVoteForm() {
       />
       <FormMessage state={state} />
       <div>
-        <SubmitButton>Cast my vote</SubmitButton>
+        <SubmitButton pending={pending}>Cast my vote</SubmitButton>
       </div>
     </form>
   );

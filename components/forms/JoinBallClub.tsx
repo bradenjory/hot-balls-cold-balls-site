@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, m, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import { MASCOTS } from "../Mascot";
 import { BallClubForm, type Side } from "./BallClubForm";
@@ -21,7 +21,7 @@ export function JoinBallClub({
   const [side, setSide] = useState<Side>(defaultSide);
   const reduce = useReducedMotion();
   const who = side === "blaze" ? "blaze" : side === "frost" ? "frost" : "symbol";
-  const m = MASCOTS[who];
+  const art = MASCOTS[who];
 
   return (
     <div className="grid items-center gap-x-12 gap-y-10 lg:grid-cols-12">
@@ -39,7 +39,7 @@ export function JoinBallClub({
             }`}
           />
           <AnimatePresence mode="popLayout" initial={false}>
-            <motion.div
+            <m.div
               key={who}
               className="absolute inset-[12%]"
               initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.6, rotate: side === "frost" ? 20 : -20 }}
@@ -47,8 +47,8 @@ export function JoinBallClub({
               exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.6 }}
               transition={{ type: "spring", stiffness: 260, damping: 18 }}
             >
-              <Image src={m.src} alt="" width={m.width} height={m.height} sizes="300px" className="h-auto w-full" />
-            </motion.div>
+              <Image src={art.src} alt="" width={art.width} height={art.height} sizes="300px" className="h-auto w-full" />
+            </m.div>
           </AnimatePresence>
         </div>
       </div>

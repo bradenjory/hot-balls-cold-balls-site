@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { Mascot } from "@/components/Mascot";
 import { MenuList } from "@/components/MenuList";
@@ -9,13 +10,7 @@ import { BOBA, COLD, COMBOS, HOT, SAUCES } from "@/lib/menu";
 const description =
   "The full Hot Balls Cold Balls menu with prices: meatballs, arancini, mac and cheese balls, gelato, mochi, donut holes, boba and Hot + Cold combos.";
 
-export const metadata: Metadata = {
-  title: "Menu",
-  description,
-  alternates: { canonical: "/menu" },
-  openGraph: { title: "Menu | Hot Balls Cold Balls", description, url: "/menu" },
-  twitter: { title: "Menu | Hot Balls Cold Balls", description },
-};
+export const metadata: Metadata = pageMeta("Menu", description, "/menu");
 
 const r = (i: number) => ({ ["--i" as string]: i });
 

@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
 
 export const MASCOTS = {
   blaze: {
@@ -35,30 +32,23 @@ type Props = {
   alt?: string;
 };
 
-/** A mascot with a gentle idle bob and a small squash under the pointer. */
-export function Mascot({ who, className, sizes, priority, delay = 0, alt }: Props) {
-  const reduce = useReducedMotion();
+/** A mascot with a gentle idle bob and a small squash under the pointer. Pure CSS, no hydration. */
+export function Mascot({ who, className = "", sizes, priority, delay = 0, alt }: Props) {
   const m = MASCOTS[who];
   return (
-    <motion.div
-      className={className}
-      animate={reduce ? undefined : { y: [0, -10, 0] }}
-      transition={
-        reduce ? undefined : { duration: 3.6, repeat: Infinity, ease: "easeInOut", delay }
-      }
-      whileHover={reduce ? undefined : { scaleX: 1.07, scaleY: 0.93 }}
-      whileTap={reduce ? undefined : { scaleX: 1.1, scaleY: 0.9 }}
-    >
-      <Image
-        src={m.src}
-        width={m.width}
-        height={m.height}
-        alt={alt ?? m.alt}
-        sizes={sizes}
-        priority={priority}
-        draggable={false}
-        className="pointer-events-none h-auto w-full select-none"
-      />
-    </motion.div>
+    <div className={`mascot-bob ${className}`} style={{ animationDelay: `${delay}s` }}>
+      <div className="mascot-squash">
+        <Image
+          src={m.src}
+          width={m.width}
+          height={m.height}
+          alt={alt ?? m.alt}
+          sizes={sizes}
+          priority={priority}
+          draggable={false}
+          className="pointer-events-none h-auto w-full select-none"
+        />
+      </div>
+    </div>
   );
 }

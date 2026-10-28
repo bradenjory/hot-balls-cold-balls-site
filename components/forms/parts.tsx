@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { startTransition, useEffect, useRef, type FormEvent, type ReactNode } from "react";
 import { useFormStatus } from "react-dom";
 import type { FormState } from "@/lib/form-state";
 
@@ -81,8 +81,17 @@ export function Field({
   );
 }
 
-export function SubmitButton({ children, className = "btn-hot" }: { children: ReactNode; className?: string }) {
-  const { pending } = useFormStatus();
+export function SubmitButton({
+  children,
+  pending: busyFromAction = false,
+  className = "btn-hot",
+}: {
+  children: ReactNode;
+  pending?: boolean;
+  className?: string;
+}) {
+  const { pending: busyFromForm } = useFormStatus();
+  const pending = busyFromAction || busyFromForm;
   return (
     <button type="submit" className={`btn ${className}`} disabled={pending} aria-disabled={pending}>
       {pending ? "Sending…" : children}
@@ -131,4 +140,16 @@ export function useFocusFirstError(state: FormState, formRef: React.RefObject<HT
       formRef.current?.querySelector<HTMLElement>("[aria-invalid='true']")?.focus();
     }
   }, [state, formRef]);
+}
+
+/**
+ * Submit through the action without React's automatic form reset, so a failed attempt keeps
+ * everything the visitor typed and picked. Without JavaScript the form still posts natively.
+ */
+export function submitWithoutReset(action: (fd: FormData) => void) {
+  return (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    startTransition(() => action(fd));
+  };
 }

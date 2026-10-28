@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { LocationsExplorer } from "@/components/LocationsExplorer";
 import { RollingBall } from "@/components/RollingBall";
@@ -9,13 +10,7 @@ import { mailto } from "@/lib/site";
 const description =
   "Six Hot Balls Cold Balls spots coming to Utah: Lehi, Saratoga Springs, Draper, Herriman, Provo and Salt Lake City. Vote for your town or send us a site.";
 
-export const metadata: Metadata = {
-  title: "Locations",
-  description,
-  alternates: { canonical: "/locations" },
-  openGraph: { title: "Locations | Hot Balls Cold Balls", description, url: "/locations" },
-  twitter: { title: "Locations | Hot Balls Cold Balls", description },
-};
+export const metadata: Metadata = pageMeta("Locations", description, "/locations");
 
 const r = (i: number) => ({ ["--i" as string]: i });
 

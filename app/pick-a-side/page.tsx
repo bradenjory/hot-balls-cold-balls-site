@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { Mascot } from "@/components/Mascot";
@@ -10,13 +11,7 @@ import { JoinBallClub } from "@/components/forms/JoinBallClub";
 const description =
   "Team Blaze or Team Frost? Every cup and box you order counts for your side. See how the rivalry, store leaderboards, sticker drops and the Ball Club app work.";
 
-export const metadata: Metadata = {
-  title: "Pick a Side",
-  description,
-  alternates: { canonical: "/pick-a-side" },
-  openGraph: { title: "Pick a Side | Hot Balls Cold Balls", description, url: "/pick-a-side" },
-  twitter: { title: "Pick a Side | Hot Balls Cold Balls", description },
-};
+export const metadata: Metadata = pageMeta("Pick a Side", description, "/pick-a-side");
 
 const r = (i: number) => ({ ["--i" as string]: i });
 
@@ -80,7 +75,7 @@ export default async function PickASidePage({
                   The hot one. Arancini, meatballs, dough balls. Loud, loyal, a little sweaty.
                 </p>
                 <div className="mt-auto pt-8">
-                  <Link href="?side=blaze#join" scroll={false} className="btn btn-hot">
+                  <Link href="?side=blaze#join" className="btn btn-hot">
                     Join Team Blaze
                   </Link>
                 </div>
@@ -94,7 +89,7 @@ export default async function PickASidePage({
                   The cold one. Gelato, mochi, donut holes, cookie-dough bites. Too cool to sweat it.
                 </p>
                 <div className="mt-auto pt-8">
-                  <Link href="?side=frost#join" scroll={false} className="btn btn-cold">
+                  <Link href="?side=frost#join" className="btn btn-cold">
                     Join Team Frost
                   </Link>
                 </div>

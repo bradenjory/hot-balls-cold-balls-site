@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -9,13 +10,7 @@ import { TOPICS, type TopicKey } from "@/lib/form-state";
 const description =
   "Questions, collabs, catering or careers: get in touch with Hot Balls Cold Balls. Join an opening crew, send us a site, or apply as a Ball Ambassador.";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description,
-  alternates: { canonical: "/contact" },
-  openGraph: { title: "Contact | Hot Balls Cold Balls", description, url: "/contact" },
-  twitter: { title: "Contact | Hot Balls Cold Balls", description },
-};
+export const metadata: Metadata = pageMeta("Contact", description, "/contact");
 
 const r = (i: number) => ({ ["--i" as string]: i });
 
@@ -107,22 +102,22 @@ export default async function ContactPage({
             {WAYS.map((w, i) => (
               <li
                 key={w.title}
-                className="grid items-center gap-5 rounded-[var(--radius-card)] bg-bg p-6 md:grid-cols-12 md:gap-8 md:p-8"
+                className="grid items-center gap-5 rounded-[var(--radius-card)] bg-bg p-6 md:p-8 lg:grid-cols-12 lg:gap-8"
                 data-reveal
                 style={r(i)}
               >
-                <div className="flex items-center gap-4 md:col-span-4">
+                <div className="flex items-center gap-4 lg:col-span-4">
                   <SplitBall className={`size-8 shrink-0 ${i === 1 ? "rotate-90" : i === 2 ? "rotate-180" : ""}`} />
                   <h3 className="font-display text-[1.75rem] leading-tight font-bold tracking-[-0.02em]">{w.title}</h3>
                 </div>
-                <p className="text-lg md:col-span-5">{w.body}</p>
-                <div className="md:col-span-3 md:text-right">
+                <p className="max-w-[60ch] text-lg lg:col-span-5">{w.body}</p>
+                <div className="lg:col-span-3 lg:text-right">
                   {w.href.startsWith("mailto:") ? (
                     <a href={w.href} className="btn btn-outline">
                       {w.cta}
                     </a>
                   ) : (
-                    <Link href={w.href} scroll={false} className="btn btn-outline">
+                    <Link href={w.href} className="btn btn-outline">
                       {w.cta}
                     </Link>
                   )}
@@ -136,14 +131,14 @@ export default async function ContactPage({
       {/* FAQ */}
       <section className="section" aria-labelledby="faq">
         <div className="frame grid gap-10 lg:grid-cols-12">
-          <h2 id="faq" className="text-h2 lg:col-span-4" data-reveal>
+          <h2 id="faq" className="self-start text-h2 lg:col-span-4" data-reveal>
             Questions, answered.
           </h2>
           <div className="faq flex flex-col gap-3 lg:col-span-8">
             {FAQ.map((f, i) => (
               <details key={f.q} className="group rounded-[var(--radius-card)] bg-bg-raised" data-reveal style={r(i % 3)}>
                 <summary className="flex items-center justify-between gap-6 px-6 py-5 md:px-8 md:py-6">
-                  <h3 className="font-display text-[1.375rem] leading-tight font-semibold md:text-[1.6rem]">{f.q}</h3>
+                  <h3 className="font-display text-[1.2rem] leading-tight font-semibold sm:text-[1.375rem] md:text-[1.6rem]">{f.q}</h3>
                   <span className="faq-icon inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-bg group-hover:bg-hot group-hover:text-bg">
                     <Plus size={20} weight="bold" aria-hidden="true" />
                   </span>

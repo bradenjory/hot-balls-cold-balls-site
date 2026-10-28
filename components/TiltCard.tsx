@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
+import { m, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import type { ReactNode } from "react";
 
 /** A card that leans toward the pointer. Motion values only, no React state per frame. */
@@ -16,7 +16,7 @@ export function TiltCard({ children, className }: { children: ReactNode; classNa
   if (reduce) return <div className={className}>{children}</div>;
 
   return (
-    <motion.div
+    <m.div
       className={className}
       style={{ rotateX, rotateY, transformPerspective: 1100 }}
       onPointerMove={(e) => {
@@ -31,6 +31,6 @@ export function TiltCard({ children, className }: { children: ReactNode; classNa
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

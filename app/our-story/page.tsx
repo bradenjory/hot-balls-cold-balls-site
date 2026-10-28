@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { Mascot } from "@/components/Mascot";
 import { SplitBall } from "@/components/SplitBall";
@@ -6,13 +7,7 @@ import { SplitBall } from "@/components/SplitBall";
 const description =
   "Why Hot Balls Cold Balls exists: dozens of foods people love are already round, so we put them under one roof, split the menu down the middle and started in Utah.";
 
-export const metadata: Metadata = {
-  title: "Our Story",
-  description,
-  alternates: { canonical: "/our-story" },
-  openGraph: { title: "Our Story | Hot Balls Cold Balls", description, url: "/our-story" },
-  twitter: { title: "Our Story | Hot Balls Cold Balls", description },
-};
+export const metadata: Metadata = pageMeta("Our Story", description, "/our-story");
 
 const r = (i: number) => ({ ["--i" as string]: i });
 

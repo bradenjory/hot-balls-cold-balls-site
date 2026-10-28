@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, Fredoka } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { MotionProvider } from "@/components/MotionProvider";
 import { RevealObserver } from "@/components/RevealObserver";
 import { EMAIL, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -39,11 +40,13 @@ export const metadata: Metadata = {
     url: "/",
     title: SITE_NAME,
     description,
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description,
+    images: ["/opengraph-image.png"],
   },
 };
 
@@ -86,9 +89,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionProvider>
         <RevealObserver />
       </body>
     </html>
