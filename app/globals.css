@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #141019;
+  --color-raised: #1c1726;
+  --color-raised-2: #251e33;
+  --color-ink: #fff4e2;
+  --color-muted: #d9cfc0;
+  --color-hot: #ff7a1a;
+  --color-cold: #1ed6c6;
+
+  --font-display: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+
+  /* Five type steps. Body never below 16px. */
+  --text-display: clamp(3rem, 1.6rem + 5.2vw, 5.75rem);
+  --text-h2: clamp(2.25rem, 4.2vw, 3.75rem);
+  --text-h3: clamp(1.625rem, 2.4vw, 2.25rem);
+  --text-lead: clamp(1.1875rem, 1.55vw, 1.4375rem);
+  --text-body: 1.0625rem;
+
+  --radius-card: 24px;
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--color-bg);
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  :focus-visible {
+    outline: 3px solid var(--color-cold);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection { background: var(--color-hot); color: var(--color-bg); }
+}
+
+@utility wrap {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+@utility section-gap {
+  padding-block: clamp(80px, 11vw, 168px);
+}
+
+/* Small eyebrow, used only where the brief marks one. Sentence case, cream. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  &::before {
+    content: "";
+    height: 0.75em;
+    border-radius: 999px;
+    border-left: 0.375em solid var(--color-hot);
+    border-right: 0.375em solid var(--color-cold);
+  }
+}
+
+/* Motion: everything is visible by default and only animates when the browser
+   supports scroll-driven animations and the visitor allows motion. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hidden only once the reveal script has run (html.js), so nothing stays invisible without JS. */
+  .js .reveal > * {
+    transition: opacity 600ms ease-out, transform 700ms var(--ease-bounce);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .js .reveal:not([data-in]) > * { opacity: 0; transform: translateY(28px); }
+  .reveal > :nth-child(2) { --i: 1; }
+  .reveal > :nth-child(3) { --i: 2; }
+  .reveal > :nth-child(n + 4) { --i: 3; }
+  .bob { animation: bob 3.6s ease-in-out infinite; }
+  .bob-late { animation: bob 3.6s ease-in-out -1.8s infinite; }
+  .squash { transition: transform 260ms var(--ease-bounce); }
+  .squash:hover { transform: scale(1.06, 0.94); }
+  .marquee-track { animation: marquee 22s linear infinite; }
+}
