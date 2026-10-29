@@ -9,25 +9,25 @@ export function Footer() {
     <footer className="bg-bg pt-12 pb-10 md:pt-16">
       <div className="wrap">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <Image
               src="/brand/hbcb-logo-horizontal-tagline-on-dark.png"
               alt="Hot Balls Cold Balls. Have a ball."
               width={2400}
               height={893}
-              className="h-auto w-full max-w-[560px]"
-              sizes="(min-width: 1024px) 560px, 90vw"
+              className="h-auto w-full max-w-[460px]"
+              sizes="(min-width: 1024px) 460px, 90vw"
             />
             <p className="mt-8 max-w-[28ch] font-display text-h3 font-semibold leading-tight tracking-tight">
               Hot balls. Cold balls. Boba in between. Coming to Utah.
             </p>
           </div>
-          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-5">
+          <div className="grid gap-10 sm:grid-cols-[auto_auto] sm:justify-between lg:col-span-5 lg:col-start-8">
             <nav aria-label="Footer">
               <ul className="space-y-3">
                 {NAV.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} className="text-lg hover:text-hot">
+                    <Link href={item.href} className="text-lg whitespace-nowrap hover:text-hot">
                       {item.label}
                     </Link>
                   </li>

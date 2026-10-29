@@ -30,11 +30,11 @@ function withPlant(text: string) {
 
 function MenuList({ items, tone }: { items: Item[]; tone: "hot" | "cold" }) {
   return (
-    <ul className="grid gap-x-12 gap-y-9 sm:grid-cols-2">
+    <ul className="grid gap-x-10 gap-y-9 md:grid-cols-2 xl:grid-cols-3">
       {items.map((item) => (
         <li key={item.name} className="flex gap-5">
           {/* TODO: photo, {item.name} cut out on a plain background, 400x400, masked to a circle */}
-          <span aria-hidden="true" className={`mt-1 size-12 shrink-0 rounded-full md:size-14 ${tone === "hot" ? "bg-hot" : "bg-cold"}`} />
+          <span aria-hidden="true" className={`mt-0.5 size-10 shrink-0 rounded-full md:size-12 ${tone === "hot" ? "bg-hot" : "bg-cold"}`} />
           <div className="min-w-0 grow">
             <h3 className="font-display text-[1.375rem] font-semibold leading-tight tracking-tight">
               {item.name} {item.plant && <Plant />}
@@ -42,7 +42,7 @@ function MenuList({ items, tone }: { items: Item[]; tone: "hot" | "cold" }) {
             <p className="mt-1.5 text-muted">{withPlant(item.desc)}</p>
             <ul className="mt-3 flex flex-wrap gap-2" aria-label={`${item.name} prices`}>
               {item.prices.map((p) => (
-                <li key={p} className="rounded-full bg-raised-2 px-4 py-1.5 font-semibold tabular-nums">
+                <li key={p} className="rounded-full bg-raised-2 px-3.5 py-1.5 font-semibold whitespace-nowrap tabular-nums">
                   {p}
                 </li>
               ))}
@@ -105,20 +105,22 @@ export default function MenuPage() {
       </nav>
 
       <section id="hot" className="section-gap" aria-labelledby="hot-title">
-        <div className="wrap grid gap-12 lg:grid-cols-12">
-          <div className="reveal lg:col-span-4">
-            <h2 id="hot-title" className="text-h2 text-hot">
-              Hot Balls
-            </h2>
-            <p className="mt-4 text-lead">Snack or Regular. One sauce included, extra sauce $0.75.</p>
-            <div className="mt-8 hidden w-56 rounded-full bg-hot p-8 lg:block">
+        <div className="wrap">
+          <div className="reveal grid items-center gap-8 md:grid-cols-[1fr_auto] lg:grid-cols-[1fr_auto_minmax(0,1fr)] lg:gap-12">
+            <div>
+              <h2 id="hot-title" className="text-h2 text-hot">
+                Hot Balls
+              </h2>
+              <p className="mt-4 max-w-[30ch] text-lead">Snack or Regular. One sauce included, extra sauce $0.75.</p>
+            </div>
+            <div className="hidden w-36 rounded-full bg-hot p-5 md:block lg:w-40">
               <Mascot name="blaze" sizes="160px" />
             </div>
-            <div className="mt-10 rounded-[24px] bg-raised p-7">
+            <div className="rounded-[24px] bg-raised p-7 md:col-span-2 lg:col-span-1">
               <h3 className="text-h3">Sauces</h3>
-              <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3">
+              <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3 lg:grid-cols-2">
                 {SAUCES.map((s) => (
-                  <li key={s} className="flex items-center gap-2.5">
+                  <li key={s} className="flex items-center gap-2.5 whitespace-nowrap">
                     <SplitDot />
                     {s}
                   </li>
@@ -126,23 +128,23 @@ export default function MenuPage() {
               </ul>
             </div>
           </div>
-          <div className="reveal lg:col-span-8">
+          <div className="reveal mt-12 md:mt-16">
             <MenuList items={HOT} tone="hot" />
           </div>
         </div>
       </section>
 
       <section id="cold" className="section-gap bg-raised" aria-labelledby="cold-title">
-        <div className="wrap grid gap-12 lg:grid-cols-12">
-          <div className="reveal lg:order-2 lg:col-span-4 lg:col-start-9">
+        <div className="wrap">
+          <div className="reveal flex items-center gap-8 lg:gap-12">
+            <div className="hidden w-36 shrink-0 rounded-full bg-cold p-5 md:block lg:w-40">
+              <Mascot name="frost" sizes="160px" bob="bob-late" />
+            </div>
             <h2 id="cold-title" className="text-h2 text-cold">
               Cold Balls
             </h2>
-            <div className="mt-8 hidden w-56 rounded-full bg-cold p-8 lg:block">
-              <Mascot name="frost" sizes="160px" bob="bob-late" />
-            </div>
           </div>
-          <div className="reveal lg:order-1 lg:col-span-8 [&_li_li]:bg-bg">
+          <div className="reveal mt-12 md:mt-16 [&_li_li]:bg-bg">
             <MenuList items={COLD} tone="cold" />
           </div>
         </div>

@@ -27,7 +27,7 @@ export function BallClub({ children, defaultSide = "" }: { children: ReactNode; 
     <div className="grid items-center gap-x-16 gap-y-10 lg:grid-cols-12">
       <div className="lg:col-span-5">
         {children}
-        <div className="relative mt-10 hidden aspect-square w-full max-w-[300px] lg:block" aria-hidden="true">
+        <div className="relative mt-10 hidden aspect-square w-full max-w-[220px] lg:block" aria-hidden="true">
           <AnimatePresence mode="wait" initial={false}>
             <m.div
               key={shown}
@@ -47,7 +47,7 @@ export function BallClub({ children, defaultSide = "" }: { children: ReactNode; 
         {state.status === "success" ? (
           <Success>You’re in. Watch your inbox for first-bite news.</Success>
         ) : (
-          <form action={action} noValidate className="relative grid gap-6 rounded-[24px] bg-raised p-6 md:p-10">
+          <form action={action} noValidate className="relative grid gap-5 rounded-[24px] bg-raised p-6 md:p-8">
             <Honeypot />
             <Field id="bc-email" label="Email" error={e.email}>
               <input

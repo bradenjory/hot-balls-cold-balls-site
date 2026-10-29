@@ -115,10 +115,10 @@ export default function PickASidePage() {
               </div>
             </Step>
             <Step title="Sticker drops." body="Every new flavor brings a collectible mascot costume. Collect the set.">
-              <div aria-hidden="true" className="flex w-full max-w-[420px] items-center">
+              <div aria-hidden="true" className="grid w-full max-w-[420px] grid-cols-3 items-center gap-4">
                 <Sticker name="blaze" className="-rotate-12" />
-                <Sticker name="symbol" className="-ml-6 rotate-6" />
-                <Sticker name="frost" className="-ml-6 -rotate-3" />
+                <Sticker name="symbol" className="rotate-6" />
+                <Sticker name="frost" className="-rotate-3" />
               </div>
             </Step>
           </div>
@@ -190,7 +190,7 @@ function Team({ team, title, body, cta }: { team: "blaze" | "frost"; title: stri
   return (
     <TiltCard className="h-full">
       <article className="reveal flex h-full flex-col rounded-[24px] bg-bg p-8 md:p-10">
-        <div className={`w-40 rounded-full p-6 md:w-52 ${hot ? "bg-hot" : "bg-cold"}`}>
+        <div className={`w-32 rounded-full p-5 md:w-40 ${hot ? "bg-hot" : "bg-cold"}`}>
           <Mascot name={team} bob={hot ? "bob" : "bob-late"} sizes="200px" />
         </div>
         <h3 className={`mt-8 text-h3 ${hot ? "text-hot" : "text-cold"}`}>{title}</h3>
@@ -219,7 +219,7 @@ function Step({ title, body, flip, children }: { title: string; body: string; fl
 
 function Sticker({ name, className }: { name: "blaze" | "frost" | "symbol"; className: string }) {
   return (
-    <span className={`squash block w-1/3 rounded-full bg-ink p-2 ${className}`}>
+    <span className={`squash block rounded-full bg-ink p-2 ${className}`}>
       <Mascot name={name} decorative sizes="140px" bob="" />
     </span>
   );

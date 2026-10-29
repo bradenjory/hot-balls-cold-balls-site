@@ -15,7 +15,7 @@ export function Contact({ defaultTopic = "general" }: { defaultTopic?: string })
   if (state.status === "success") return <Success>Thanks! We’ll get back to you soon.</Success>;
 
   return (
-    <form id="contact-form" action={action} noValidate className="relative grid gap-6 rounded-[24px] bg-raised p-6 md:p-10">
+    <form id="contact-form" action={action} noValidate className="relative grid gap-5 rounded-[24px] bg-raised p-6 md:p-8">
       <Honeypot />
       <div className="grid gap-6 md:grid-cols-2">
         <Field id="c-first" label="First name" error={e.firstName}>

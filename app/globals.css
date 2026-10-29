@@ -13,7 +13,7 @@
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
 
   /* Five type steps. Body never below 16px. */
-  --text-display: clamp(3rem, 1.6rem + 5.2vw, 5.75rem);
+  --text-display: clamp(2.5rem, min(6vw + 1rem, 10.5svh), 5.75rem);
   --text-h2: clamp(2.25rem, 4.2vw, 3.75rem);
   --text-h3: clamp(1.625rem, 2.4vw, 2.25rem);
   --text-lead: clamp(1.1875rem, 1.55vw, 1.4375rem);
@@ -62,7 +62,16 @@
 }
 
 @utility section-gap {
-  padding-block: clamp(80px, 11vw, 168px);
+  padding-block: clamp(64px, 8vw, 128px);
+}
+
+/* Hero title: sized by width and height so all three lines and the buttons fit the first screen. */
+@utility hero-title {
+  font-size: min(11.6vw, 4.5rem);
+  line-height: 0.95;
+  @media (min-width: 1024px) {
+    font-size: clamp(3rem, min(6vw, 10.5svh), 5.75rem);
+  }
 }
 
 /* Small eyebrow, used only where the brief marks one. Sentence case, cream. */
@@ -97,6 +106,10 @@
 @keyframes marquee {
   to { transform: translateX(-50%); }
 }
+@keyframes marquee-back {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   /* Hidden only once the reveal script has run (html.js), so nothing stays invisible without JS. */
@@ -112,5 +125,6 @@
   .bob-late { animation: bob 3.6s ease-in-out -1.8s infinite; }
   .squash { transition: transform 260ms var(--ease-bounce); }
   .squash:hover { transform: scale(1.06, 0.94); }
-  .marquee-track { animation: marquee 22s linear infinite; }
+  .marquee-track { animation: marquee 26s linear infinite; }
+  .marquee-track-back { animation: marquee-back 30s linear infinite; }
 }

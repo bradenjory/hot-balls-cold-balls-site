@@ -29,7 +29,7 @@ export default function LocationsPage() {
           </div>
         </div>
         <div className="lg:col-span-5">
-          <WasatchMap className="mx-auto w-full max-w-[460px]" />
+          <WasatchMap className="mx-auto w-full max-w-[420px] lg:h-[min(72svh,620px)] lg:w-auto lg:max-w-none" />
         </div>
       </section>
 
@@ -61,9 +61,9 @@ export default function LocationsPage() {
               Bring us to your town.
             </h2>
             <p className="mt-6 text-lead">Tell us where you want the next one. The town with the most votes gets a closer look.</p>
-            <div className="mt-10 flex max-w-[320px] items-end">
-              <Mascot name="blaze" decorative className="w-1/2" sizes="160px" />
-              <Mascot name="frost" decorative bob="bob-late" className="-ml-4 w-1/2" sizes="160px" />
+            <div className="mt-10 grid max-w-[300px] grid-cols-2 items-end gap-5">
+              <Mascot name="blaze" decorative sizes="160px" />
+              <Mascot name="frost" decorative bob="bob-late" sizes="160px" />
             </div>
           </div>
           <div className="reveal lg:col-span-7">

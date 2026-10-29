@@ -14,7 +14,7 @@ export default function OurStoryPage() {
       <section className="relative overflow-hidden">
         <div
           aria-hidden="true"
-          className="absolute top-1/2 left-[56%] hidden aspect-square h-[120%] -translate-y-1/2 rounded-full bg-raised lg:block"
+          className="absolute top-1/2 left-[58%] hidden aspect-square h-[92%] -translate-y-1/2 rounded-full bg-raised lg:block"
         />
         <div className="wrap relative grid items-center gap-12 py-16 lg:grid-cols-12 lg:py-28">
           <div className="lg:col-span-7">
@@ -28,7 +28,7 @@ export default function OurStoryPage() {
             </p>
           </div>
           <div className="lg:col-span-5">
-            <Mascot name="symbol" priority className="mx-auto w-[min(56vw,440px)]" sizes="(min-width:1024px) 440px, 70vw" />
+            <Mascot name="symbol" priority className="mx-auto w-[min(56vw,400px)] lg:w-[min(100%,calc(100svh-240px),440px)]" sizes="(min-width:1024px) 440px, 70vw" />
           </div>
         </div>
       </section>

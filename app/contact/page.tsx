@@ -64,10 +64,10 @@ export default function ContactPage() {
           >
             {EMAIL}
           </a>
-          <div className="mt-12 hidden max-w-[380px] items-end lg:flex">
-            <Mascot name="blaze" decorative className="w-1/3" sizes="130px" />
-            <Mascot name="symbol" decorative bob="bob-late" className="-mx-3 w-5/12" sizes="160px" />
-            <Mascot name="frost" decorative className="w-1/3" sizes="130px" />
+          <div className="mt-12 hidden max-w-[380px] grid-cols-[1fr_1.3fr_1fr] items-end gap-4 lg:grid">
+            <Mascot name="blaze" decorative sizes="130px" />
+            <Mascot name="symbol" decorative bob="bob-late" sizes="160px" />
+            <Mascot name="frost" decorative sizes="130px" />
           </div>
         </div>
         <div className="lg:col-span-6">

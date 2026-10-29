@@ -11,9 +11,9 @@ export function TownVote() {
   if (state.status === "success") return <Success>Vote counted. We’ll let you know if we’re headed your way.</Success>;
 
   return (
-    <form action={action} noValidate className="relative grid gap-6 rounded-[24px] bg-raised p-6 md:p-10">
+    <form action={action} noValidate className="relative grid gap-5 rounded-[24px] bg-raised p-6 md:p-8">
       <Honeypot />
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
         <Field id="tv-email" label="Email" error={e.email}>
           <input id="tv-email" name="email" type="email" autoComplete="email" required defaultValue={state.values?.email}
             aria-invalid={!!e.email} aria-describedby={describedBy("tv-email", e.email)} className={`${inputClass}`} />
